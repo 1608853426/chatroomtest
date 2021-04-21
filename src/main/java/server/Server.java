@@ -7,8 +7,8 @@ import java.net.Socket;
 
 public class Server {
     private static final int SERVER_PORT = 30000;
-    //使用CrazyitMap对象来保存每个客户名字和对应输出流之间的对应关系
-    public static CrazyitMap<String, PrintStream> clients = new CrazyitMap<>();
+    //使用UserStreamMap对象来保存每个客户名字和对应输出流之间的对应关系
+    public static UserStreamMap<String, PrintStream> clients = new UserStreamMap<>();
 
     public static void main(String[] args) {
         Server server = new Server();

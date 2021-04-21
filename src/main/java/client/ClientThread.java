@@ -3,6 +3,9 @@ package client;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+/**
+ * @author sunam
+ */
 public class ClientThread extends Thread
 {
     // 该客户端线程负责处理的输入流
@@ -12,6 +15,7 @@ public class ClientThread extends Thread
     {
         this.br=br;
     }
+    @Override
     public void run()
     {
         try
@@ -21,6 +25,9 @@ public class ClientThread extends Thread
             while((line=br.readLine())!=null)
             {
                 System.out.println(line);
+                /**
+                 * 每次有新的用户登录登出时，服务器都向所有用户发送在线用户的所有信息
+                 */
             }
         }
         catch (IOException ex)

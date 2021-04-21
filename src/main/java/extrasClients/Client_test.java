@@ -1,8 +1,7 @@
 package extrasClients;
 
-import client.Client;
 import client.ClientThread;
-import server.CrazyitProtocol;
+import server.ProtocolCharacter;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -37,20 +36,20 @@ public class Client_test{
             String tip = " ";
             //循环弹出对话框要求用户输入用户名
             while (true){
-                String usename = JOptionPane.showInputDialog(tip + "请输入用户名");
+                String username = JOptionPane.showInputDialog(tip + "请输入用户名");
                 //用户输入的用户名前后增加协议字符串后发送
-                printStream.println(CrazyitProtocol.USER_ROUND + usename + CrazyitProtocol.USER_ROUND);
+                printStream.println(ProtocolCharacter.USER_ROUND + username + ProtocolCharacter.USER_ROUND);
 
 
                 //读取服务器响应
                 String result = brServer.readLine();
                 //如果用户名重复，则开始下一次循环
-                if (result.equals(CrazyitProtocol.NAME_REP)){
+                if (result.equals(ProtocolCharacter.NAME_REP)){
                     tip = "用户名重复！ ";
                     continue;
                 }
                 //如果服务器端返回登录成功，则结束循环
-                if (result.equals(CrazyitProtocol.LOGIN_SUCCESS)){
+                if (result.equals(ProtocolCharacter.LOGIN_SUCCESS)){
                     break;
                 }
             }
@@ -101,9 +100,9 @@ public class Client_test{
                 //如果发送的信号中有冒号，并以//开头，则认为想发送私聊信息
                 if (line.indexOf(":") > 0 && line.startsWith("//")){
                     line = line.substring(2);
-                    printStream.println(CrazyitProtocol.PRIVATE_ROUND+line.split(":")[0]+CrazyitProtocol.SPLIT_SIGN+line.split(":")[1]+CrazyitProtocol.PRIVATE_ROUND);
+                    printStream.println(ProtocolCharacter.PRIVATE_ROUND+line.split(":")[0]+ ProtocolCharacter.SPLIT_SIGN+line.split(":")[1]+ ProtocolCharacter.PRIVATE_ROUND);
                 }else{
-                    printStream.println(CrazyitProtocol.MSG_ROUND+line+CrazyitProtocol.MSG_ROUND);
+                    printStream.println(ProtocolCharacter.MSG_ROUND+line+ ProtocolCharacter.MSG_ROUND);
                 }
             }
         }catch (IOException e){

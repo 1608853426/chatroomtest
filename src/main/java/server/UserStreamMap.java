@@ -14,10 +14,10 @@ import java.util.Set;
  * @apiNote 服务器端提供了一个HashMap的子类，该类不允许value重复，并提供了根据value获取key，根据value删除key等方法
  */
 
-//扩展HashMap类，CrazyitMap类要求value也不可重复
+//扩展HashMap类，UserStreamMap类要求value也不可重复
 import java.util.*;
 
-public class CrazyitMap<k,v> {
+public class UserStreamMap<k,v> {
     //创建一个线程安全的HashMap
     public Map<k,v> map= Collections.synchronizedMap(new HashMap<k,v>());
     //根据value来删除指定项
