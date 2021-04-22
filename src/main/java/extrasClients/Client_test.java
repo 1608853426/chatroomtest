@@ -71,7 +71,9 @@ public class Client_test{
 
 
     private void closeRs() {
-        // 关闭Socket、输入流、输出流的方法
+        /**
+         * 关闭Socket、输入流、输出流的方法
+         */
         try {
             if (keyIN != null){
                 keyIN.close();
@@ -90,7 +92,9 @@ public class Client_test{
         }
     }
 
-    //定义一个读取键盘输出，并以网络发送的方法
+    /**
+     * 定义一个读取键盘输出，并以网络发送的方法
+     */
     private void readAndSend() {
         try {
 

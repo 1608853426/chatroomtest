@@ -5,9 +5,15 @@ import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * @author sunam
+ * @apiNote 服务器入口
+ */
 public class Server {
     private static final int SERVER_PORT = 30000;
-    //使用UserStreamMap对象来保存每个客户名字和对应输出流之间的对应关系
+    /**
+     * 使用UserStreamMap对象来保存每个客户名字和对应输出流之间的对应关系
+     */
     public static UserStreamMap<String, PrintStream> clients = new UserStreamMap<>();
 
     public static void main(String[] args) {

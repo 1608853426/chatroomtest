@@ -14,13 +14,21 @@ import java.util.Set;
  * @apiNote 服务器端提供了一个HashMap的子类，该类不允许value重复，并提供了根据value获取key，根据value删除key等方法
  */
 
-//扩展HashMap类，UserStreamMap类要求value也不可重复
+/**
+ * 扩展HashMap类，UserStreamMap类要求value也不可重复
+ */
 import java.util.*;
 
 public class UserStreamMap<k,v> {
-    //创建一个线程安全的HashMap
+    /**
+     * 创建一个线程安全的HashMap
+     */
     public Map<k,v> map= Collections.synchronizedMap(new HashMap<k,v>());
-    //根据value来删除指定项
+
+    /**
+     * 根据value来删除指定项
+     * @param value
+     */
     public synchronized void removeByValue(Object value){
         for (Object key:map.keySet()){
             if (map.get(key)==value){
@@ -29,14 +37,23 @@ public class UserStreamMap<k,v> {
             }
         }
     }
-    //获取所有value组成的Set集合
+
+    /**
+     * 获取所有value组成的Set集合
+     * @return Set
+     */
     public synchronized Set<v> valueSet(){
         Set<v> result=new HashSet<v>();
         //将map中的所有value添加到result集合中
         map.forEach((key,value)->result.add(value));
         return result;
     }
-    //根据value查找key
+
+    /**
+     * 根据value查找key
+     * @param value
+     * @return key
+     */
     public synchronized k getKeyByValue(v value){
         //遍历所有key组成的集合
         for (k key:map.keySet()){
@@ -47,7 +64,13 @@ public class UserStreamMap<k,v> {
         }
         return null;
     }
-    //实现put()方法，该方法不允许value重复
+
+    /**
+     * 实现put()方法，该方法不允许value重复
+     * @param key
+     * @param value
+     * @return value
+     */
     public synchronized v put(k key,v value){
         //遍历所有value组成的集合
         for (v val:valueSet()){
